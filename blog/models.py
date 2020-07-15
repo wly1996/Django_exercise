@@ -15,7 +15,7 @@ class Post(models.Model): #文章
 
     body = models.TextField() #正文
 
-    create_time = models.DateTimeField() #创建时间
+    created_time = models.DateTimeField() #创建时间
     modified_time = models.DateTimeField() #修改时间
 
     excerpt = models.CharField(max_length = 200, blank=True) #摘要，可以为空
