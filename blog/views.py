@@ -1,3 +1,4 @@
+import markdown
 from django.shortcuts import render, get_object_or_404
 from .models import Post
 
@@ -10,4 +11,9 @@ def index(request):
 
 def detail(request, pk):
     post = get_object_or_404(Post, pk = pk)
+    
+    md = markdown.markdown
+    exts = ['extra', 'codehilite', 'toc'] #将所有的扩展集中在一个数组里
+    post.body = md(post.body, extensions = exts)
+
     return render(request, 'blog/detail.html', context = {'post': post})
