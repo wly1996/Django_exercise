@@ -50,19 +50,15 @@ class Post(models.Model): #文章
 
     def save(self, *args, **kwargs): #每次修改时自动获取当前时间
         self.modified_time = timezone.now()
+
+        md = markdown.Markdown(extension = ['extra', 'codehilite',]) #自动摘取正文前N个自字符作为摘要
+        self.excerpt = strip_tags(md.convert(self.body))[:54]
+
         super().save(*args, **kwargs)
+    
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self): #获取文章详情
         return reverse('blog:detail', kwargs = {'pk': self.pk})
-
-    def save(self, *args, **kwargs): #自动摘取正文前N个自字符作为摘要
-        self.modified_time = timezone.now()
-
-        md = markdown.Markdown(extensions = ['extra', 'codehilite',])
-
-        self.excerpt = strip_tags(md.convert(self.body))[:54]
-
-        super().save(*args, **kwargs)
