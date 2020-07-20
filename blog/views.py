@@ -2,7 +2,7 @@ import markdown
 import re
 from django.shortcuts import render, get_object_or_404
 from django.utils.text import slugify
-from .models import Post
+from .models import Post, Category, Tag #引入Category,Tag类
 from markdown.extensions.toc import TocExtension #导入美化标题的锚点URL
 
 # Create your views here.
@@ -28,3 +28,17 @@ def detail(request, pk):
 
 
     return render(request, 'blog/detail.html', context = {'post': post})
+
+def archive(request, year, month): #根据日期来分类文章
+    post_list = Post.objects.filter(created_time__year = year, created_time__month = month).order_by('-created_time')
+    return render(request, 'blog/index.html', context = {'post_list': post_list})
+
+def category(request, pk): #根据目录来分类文章
+    cate = get_object_or_404(Category, pk = pk)
+    post_list = Post.objects.filter(category = cate).order_by('-created_time')
+    return render(request, 'blog/index.html', context = {'post_list': post_list})
+
+def tag(request, pk): #根据标签来分类文章
+    t= get_object_or_404(Tag, pk = pk)
+    post_list = Post.objects.filter(tags = t).order_by('-created_time')
+    return render(request, 'blog/index.html', context = {'post_list': post_list})
