@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'blog', 
     'blog.apps.BlogConfig', #由于在BlogConfig类里对app进行了配置，所以应该将这个类注册进去
+    'comments.apps.CommentsConfig' #添加评论功能
 ]
 
 MIDDLEWARE = [
