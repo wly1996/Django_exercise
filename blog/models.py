@@ -47,6 +47,7 @@ class Post(models.Model): #文章
     class Meta: #设置中文显示
         verbose_name = '文章'
         verbose_name_plural = verbose_name
+        ordering = ['-created_time'] #以创建时间对文章进行排序
 
     def save(self, *args, **kwargs): #每次修改时自动获取当前时间
         self.modified_time = timezone.now()
