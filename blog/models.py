@@ -44,6 +44,8 @@ class Post(models.Model): #文章
 
     author = models.ForeignKey(User, verbose_name = '作者', on_delete = models.CASCADE) #设置作者
 
+    views = models.PositiveIntegerField(default = 0) #设置阅读量
+
     class Meta: #设置中文显示
         verbose_name = '文章'
         verbose_name_plural = verbose_name
@@ -63,3 +65,7 @@ class Post(models.Model): #文章
 
     def get_absolute_url(self): #获取文章详情
         return reverse('blog:detail', kwargs = {'pk': self.pk})
+
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields = ['views'])

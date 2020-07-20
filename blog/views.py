@@ -14,7 +14,7 @@ def index(request):
 
 def detail(request, pk):
     post = get_object_or_404(Post, pk = pk)
-    
+    post.increase_views() #阅读量+1
     # md = markdown.markdown
     # exts = ['extra', 'codehilite', 'toc'] #将所有的扩展集中在一个数组里
 
