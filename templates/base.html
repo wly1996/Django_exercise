@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {% load static %} <!-- 如果不添加这一说明会出现“Invalid block tag on line 12: 'static'. Did you forget to register or load this tag?”错误 -->
+    {% load blog_extra %} <!-- 导入存在模板标签的模块 -->
 
     <!-- css -->
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -109,6 +110,15 @@
             <aside class="col-md-4">
                 {% block toc %}
                 {% endblock toc %}
+
+                {% show_recent_posts %}
+                {% show_archives %}
+                {% show_categories %}
+                {% show_tags %}
+
+                <div class="rss">
+                    <a href=""><span class="ion-social-rss-outline>"></span> RSS 订阅</a>
+                </div>
             </aside>
         </div>
     </div>
