@@ -5,6 +5,7 @@ from django.utils.text import slugify
 from .models import Post, Category, Tag #引入Category,Tag类
 from markdown.extensions.toc import TocExtension #导入美化标题的锚点URL
 from django.views.generic import ListView, DetailView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger #添加分页功能
 
 # Create your views here.
 
@@ -19,6 +20,7 @@ class IndexView(ListView): #将Index视图函数改写为类视图
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'post_list'
+    paginate_by = 10 # 每页显示十篇文章
 
 '''
 def detail(request, pk):
