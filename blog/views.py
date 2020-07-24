@@ -81,7 +81,9 @@ def archive(request, year, month): #根据日期来分类文章
 
 class ArchiveView(IndexView):
     def get_queryset(self):
-        return super(ArchiveView, self).get_queryset().filter()
+        year = self.kwargs.get("year")
+        month = self.kwargs.get("month")
+        return super(ArchiveView, self).get_queryset().filter(created_time__year = year, created_time__month = month)
 
 '''
 def category(request, pk): #根据目录来分类文章
