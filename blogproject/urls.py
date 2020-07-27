@@ -18,6 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('search/', include('haystack.urls')), #配置搜索功能的url路径
     path('', include('blog.urls')),
     path('', include('comments.urls')),
 ]

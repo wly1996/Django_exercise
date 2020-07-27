@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'blog', 
+    'haystack', # 添加shaystack搜索框架
     'blog.apps.BlogConfig', #由于在BlogConfig类里对app进行了配置，所以应该将这个类注册进去
     'comments.apps.CommentsConfig', #添加评论功能
     'pure_pagination', # 注册分页应用
@@ -128,3 +129,13 @@ PAGINATION_SETTINGS = {
     'MARGIN_PAGES_DISPLAYED': 2, # 分页条开头和结尾显示的页数
     'SHOW_FIRST_PAGE_WHEN_INVALID': True, # 当请求了不存在页，显示第一页
 }
+
+HAYSTACK_CONNECTIONS = { # 添加haystack的相关配置
+    'default':{
+        'ENGINE': 'haystack.backends.whoosh_cn_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    }
+}
+
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10 # 每页显示十个结果
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor' # 当数据库改变时会自动更新索引
