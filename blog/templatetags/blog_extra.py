@@ -24,4 +24,4 @@ def show_categories(context):
 @register.inclusion_tag('blog/inclusions/_tags.html', takes_context = True) #标签云模板标签
 def show_tags(context):
     tag_list = Tag.objects.annotate(num_posts = Count('post')).filter(num_posts__gt = 0) #对Tag进行同样的操作
-    return{'tag_list': Tag.objects.all(),}
+    return{'tag_list': tag_list,}
