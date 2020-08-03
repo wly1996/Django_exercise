@@ -1,3 +1,5 @@
+{% load static %} <!-- 如果不添加这一说明会出现“Invalid block tag on line 12: 'static'. Did you forget to register or load this tag?”错误 -->
+{% load blog_extra %} <!-- 导入存在模板标签的模块 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,9 +8,6 @@
     <!-- meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    {% load static %} <!-- 如果不添加这一说明会出现“Invalid block tag on line 12: 'static'. Did you forget to register or load this tag?”错误 -->
-    {% load blog_extra %} <!-- 导入存在模板标签的模块 -->
 
     <!-- css -->
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -21,6 +20,7 @@
     <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'blog/js/pace.min.js' %}"></script>
     <script src="{% static 'blog/js/modernizr.custom.js' %}"></script>
+    <script src="{% static 'blog/js/script.js' %}"></script>
 
     <link href="https://cdn.bootcss.com/highlight.js/9.15.8/styles/github.min.css" rel="stylesheet"> <!-- 引入GitHub代码高亮-->
 
@@ -161,7 +161,6 @@
     </nav>
 </div>
 
-<script src="js/script.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
 <script src="https://cdn.bootcss.com/highlightjs-line-numbers.js/2.7.0/highlightjs-line-numbers.min.js"></script>
 <script>
